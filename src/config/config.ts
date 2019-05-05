@@ -26,7 +26,35 @@ const config = convict({
         format: String,
         default: "secretsecret",
         sensitive: true,
-    }
+    },
+    db: {
+        host: {
+            doc: "Database host name/IP",
+            format: "*",
+            default: "localhost",
+        },
+        port: {
+            doc: "The database port to bind.",
+            format: "port",
+            default: 3306,
+        },
+        teamMemberDb: {
+            doc: "Database name",
+            format: String,
+            default: "teamMember",
+        },
+        dbUsername: {
+            doc: "username",
+            format: String,
+            default: "",
+        },
+        dbPassword: {
+            doc: "userpassword",
+            format: String,
+            default: "",        // password for the database
+            sensitive: true,
+        },
+    },    
 });
 
 
