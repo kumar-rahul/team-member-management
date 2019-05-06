@@ -22,6 +22,7 @@ export default class TeamMemberService {
     }
 
     public async update(teamMember: TeamMember) {
+        console.log('update', teamMember);
         try {
             await this.teamMemberRepository.findTeamMemberByIds(teamMember.$id);
             return this.teamMemberRepository.saveTeamMember(teamMember);

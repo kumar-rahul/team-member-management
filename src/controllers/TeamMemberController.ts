@@ -32,8 +32,11 @@ export default class TeamMemberController {
     }
 
     public async editMember(ctx: IRouterContext) {
+        console.log('editMember controller');
         try {
             const teamMember: TeamMember = TeamMember.newTeamMember(ctx.request.body);
+            console.log('editMember teamMember', String(ctx.params.id));
+            console.log('editMember | ctx.params', String(teamMember.$id));            
             if (String(ctx.params.id) !== String(teamMember.$id)) {
                 ctx.throw(400);
             }

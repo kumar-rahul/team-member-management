@@ -1,6 +1,5 @@
 export enum AppConstant {
     // error messages
-    INVALIDCATCODE = "Invalid CategoryCode",
     // auth messages
     TOKENEXPIRED = "Token Expired",
     NOTAUTHORIZED = "Not Authorized",
@@ -12,6 +11,6 @@ export enum AppConstant {
     AUTH = "/login",
     LISTTEAMMEMBER = "/v1/listteammember",
     ADDTEAMMEMBER = "/v1/addteammember",
-    EDITTEAMMEMBER = "/v1/editteammember",
+    EDITTEAMMEMBER = "/v1/editteammember/:id",
     DELETETEAMMEMBER = "/v1/deleteteammember"
 }
