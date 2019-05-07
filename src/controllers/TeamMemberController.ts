@@ -15,7 +15,7 @@ export default class TeamMemberController {
 
     public async removeMember(ctx: IRouterContext) {
         try {
-            ctx.body = await this.teamMemberService.findById(ctx.params.id);
+            ctx.body = await this.teamMemberService.removeMemberById(ctx.params.id);
         } catch (e) {
             ctx.throw(404);
         }
@@ -32,15 +32,13 @@ export default class TeamMemberController {
     }
 
     public async editMember(ctx: IRouterContext) {
-        console.log('editMember controller');
         try {
             const teamMember: TeamMember = TeamMember.newTeamMember(ctx.request.body);
-            console.log('editMember teamMember', String(ctx.params.id));
-            console.log('editMember | ctx.params', String(teamMember.$id));            
             if (String(ctx.params.id) !== String(teamMember.$id)) {
                 ctx.throw(400);
             }
             const result = await this.teamMemberService.update(teamMember);
+            ctx.body = result;
         } catch (e) {
             ctx.throw(400, e.message);
         }

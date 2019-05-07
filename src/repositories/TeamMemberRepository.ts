@@ -16,7 +16,6 @@ export default class TeamMemberRepository extends IRepository {
 
     public async findTeamMemberByIds(id: number): Promise<TeamMember> {
         const result = await this.getTeamMemberRepository().findByIds([id]);
-        console.log('findTeamMemberByIds | result::', result[0]);
         if (!result.length) {
             throw new EntityNotFoundError("No team member was found for ID: " + id);
         }

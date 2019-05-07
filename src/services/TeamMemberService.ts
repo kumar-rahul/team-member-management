@@ -22,10 +22,21 @@ export default class TeamMemberService {
     }
 
     public async update(teamMember: TeamMember) {
-        console.log('update', teamMember);
         try {
             await this.teamMemberRepository.findTeamMemberByIds(teamMember.$id);
             return this.teamMemberRepository.saveTeamMember(teamMember);
+        } catch (e) {
+            if (e instanceof EntityNotFoundError) {
+                throw new BadRequestEntity("The given teamMember does not exist yet.");
+            }
+        }
+    }
+
+    public async removeMemberById(id: number) {
+        try {
+            const member = await this.teamMemberRepository.findTeamMemberByIds(id);
+            member.$status = 'INACTIVE'
+            return this.teamMemberRepository.saveTeamMember(member);
         } catch (e) {
             if (e instanceof EntityNotFoundError) {
                 throw new BadRequestEntity("The given teamMember does not exist yet.");

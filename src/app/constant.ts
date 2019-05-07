@@ -12,5 +12,5 @@ export enum AppConstant {
     LISTTEAMMEMBER = "/v1/listteammember",
     ADDTEAMMEMBER = "/v1/addteammember",
     EDITTEAMMEMBER = "/v1/editteammember/:id",
-    DELETETEAMMEMBER = "/v1/deleteteammember"
+    DELETETEAMMEMBER = "/v1/deleteteammember/:id"
 }
