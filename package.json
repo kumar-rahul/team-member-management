@@ -35,10 +35,12 @@
     "typescript-ioc": "^1.2.5"
   },
   "dependencies": {
+    "@koa/cors": "^2.2.3",
     "@types/convict": "^4.2.1",
     "@types/koa": "^2.0.48",
     "@types/koa-bodyparser": "^4.2.2",
     "@types/koa-router": "^7.0.40",
+    "@types/koa__cors": "^2.2.3",
     "convict": "^4.4.1",
     "dotenv": "^8.0.0",
     "jwt-simple": "^0.5.6",
