@@ -7,6 +7,7 @@ import AppRoute from "./route";
 import ValidateRequest from "../middleware/security/ValidateRequest";
 import config from "../config/config";
 import * as dbConnection from "./dbconnection";
+import cors from '@koa/cors';
 
 export default class App {
     constructor(
@@ -17,7 +18,24 @@ export default class App {
         await createConnections(dbConnection.connections)
         const app: Koa = new Koa();
         const router: Router = new Router();
-        // app.use(cors());
+        app.use(async (ctx, next) => {
+            try {
+                await next();
+            } catch (err) {
+                ctx.status = err.statusCode || err.status || 500;;
+                ctx.body = {
+                status: 'FAILURE',
+                error: err
+                };
+            }
+        });
+        app.use(async (ctx, next) => {
+            ctx.set('Access-Control-Allow-Origin', '*');
+            ctx.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+            ctx.set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
+            await next();
+        });
+        app.use(cors());
         app.use(router.allowedMethods());
         router.all("/v1/*", ValidateRequest);
         // register router
@@ -26,6 +44,9 @@ export default class App {
         app.use(bodyParser());
         app.use(router.routes());
 
+        // app.on('error', err => {
+        //     console.error('server error', err)
+        // });        
         return Promise.resolve(app);
     }
 

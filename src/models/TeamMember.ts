@@ -15,8 +15,6 @@ export default class TeamMember {
     private email!: string;
     @Column()
     private role!: string;
-    @Column()
-    private status: string = 'ACTIVE';
 
     public get $id(): number {
         return this.id;
@@ -66,15 +64,7 @@ export default class TeamMember {
         this.role = value;
     }
 
-    public get $status(): string {
-        return this.status;
-    }
-
-    public set $status(value: string) {
-        this.status = value;
-    }
-
-    public static newTeamMember(obj: { id?: number, firstName?: string, lastName?: string, phoneNumber?: string, email?: string, role?: string, status?: string}) {
+    public static newTeamMember(obj: { id?: number, firstName?: string, lastName?: string, phoneNumber?: string, email?: string, role?: string}) {
         const newTeamMember = new TeamMember();
         if (obj.id) newTeamMember.id = obj.id;
         if (obj.firstName) newTeamMember.firstName = obj.firstName;
@@ -82,7 +72,6 @@ export default class TeamMember {
         if (obj.phoneNumber) newTeamMember.phoneNumber = obj.phoneNumber;
         if (obj.email) newTeamMember.email = obj.email;
         if (obj.role) newTeamMember.role = obj.role;
-        if (obj.status) newTeamMember.status = obj.status;
 
         return newTeamMember;
     }

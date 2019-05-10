@@ -1,5 +1,8 @@
 export enum AppConstant {
     // error messages
+    MEMBERALREADYEXIST = "Member already exist",
+    MEMBERNOTFOUND = "Member not found",
+    EMAILREQUIRED = "Email required",
     // auth messages
     TOKENEXPIRED = "Token Expired",
     NOTAUTHORIZED = "Not Authorized",
@@ -11,6 +14,6 @@ export enum AppConstant {
     AUTH = "/login",
     LISTTEAMMEMBER = "/v1/listteammember",
     ADDTEAMMEMBER = "/v1/addteammember",
-    EDITTEAMMEMBER = "/v1/editteammember/:id",
-    DELETETEAMMEMBER = "/v1/deleteteammember/:id"
+    EDITTEAMMEMBER = "/v1/editteammember",
+    DELETETEAMMEMBER = "/v1/deleteteammember"
 }

@@ -1,5 +1,6 @@
 import { Context } from "koa";
 import { IMiddleware, IRouterContext } from "koa-router";
+import { MediaType } from "media-typer";
 import { Inject, Singleton } from "typescript-ioc";
 import { AppConstant } from "../app/constant";
 import AuthService from "../services/AuthService";
@@ -26,8 +27,8 @@ export default class AuthController {
                     status: "SUCCESS",
                     token: this.authService.genToken(dbUserObj),
                 };
+                ctx.status = 200;
             }
-
     }
 
 }

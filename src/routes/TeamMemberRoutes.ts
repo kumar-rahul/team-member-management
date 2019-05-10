@@ -16,7 +16,7 @@ export default class TeamMemberRoutes extends IRoutes {
             Route.newRoute(AppConstant.ADDTEAMMEMBER, "post", (ctx: IRouterContext) => this.teamMemberController.saveMember(ctx)),
             Route.newRoute(AppConstant.EDITTEAMMEMBER, "put", (ctx: IRouterContext) => this.teamMemberController.editMember(ctx)),
             Route.newRoute(AppConstant.LISTTEAMMEMBER, "get", (ctx: IRouterContext) => this.teamMemberController.getAllMember(ctx)),
-            Route.newRoute(AppConstant.DELETETEAMMEMBER, "put", (ctx: IRouterContext) => this.teamMemberController.removeMember(ctx)),
+            Route.newRoute(AppConstant.DELETETEAMMEMBER, "delete", (ctx: IRouterContext) => this.teamMemberController.removeMember(ctx)),
         ];
     }
 

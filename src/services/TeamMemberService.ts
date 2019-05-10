@@ -3,6 +3,7 @@ import BadRequestEntity from "../exceptions/BadRequestEntity";
 import EntityNotFoundError from "../exceptions/EntityNotFoundError";
 import TeamMember from "../models/TeamMember";
 import TeamMemberRepository from "../repositories/TeamMemberRepository";
+import { AppConstant } from "../app/constant";
 
 @Singleton
 export default class TeamMemberService {
@@ -13,34 +14,46 @@ export default class TeamMemberService {
         return this.teamMemberRepository.findTeamMemberByIds(id);
     }
 
+    // public async findByEmail(email: string): Promise<TeamMember> {
+    //     return this.teamMemberRepository.findTeamMemberByEmail(email);
+    // }
+
     public async findAll(): Promise<TeamMember[]> {
         return this.teamMemberRepository.getAllTeamMember();
     }
 
-    public async save(teamMember: TeamMember): Promise<TeamMember> {
-        return this.teamMemberRepository.saveTeamMember(teamMember);
+    // public async save(teamMember: TeamMember): Promise<TeamMember> {
+    public async save(teamMember: TeamMember) {        
+        try {
+            const member = await this.teamMemberRepository.findTeamMemberByEmail(teamMember.$email);
+            if (member) {
+                throw new EntityNotFoundError(AppConstant.MEMBERALREADYEXIST);
+            }
+            return this.teamMemberRepository.saveTeamMember(teamMember);
+        } catch (e) {
+            throw new BadRequestEntity(e.message);
+        }
     }
 
     public async update(teamMember: TeamMember) {
         try {
-            await this.teamMemberRepository.findTeamMemberByIds(teamMember.$id);
-            return this.teamMemberRepository.saveTeamMember(teamMember);
-        } catch (e) {
-            if (e instanceof EntityNotFoundError) {
-                throw new BadRequestEntity("The given teamMember does not exist yet.");
+            // await this.teamMemberRepository.findTeamMemberByIds(teamMember.$id);
+            const member = await this.teamMemberRepository.findTeamMemberByEmail(teamMember.$email);
+            if (!member) {
+                throw new EntityNotFoundError(AppConstant.MEMBERNOTFOUND);
             }
+            return this.teamMemberRepository.updateTeamMember(teamMember);
+        } catch (e) {
+            throw new BadRequestEntity(e.message);
         }
     }
 
     public async removeMemberById(id: number) {
         try {
-            const member = await this.teamMemberRepository.findTeamMemberByIds(id);
-            member.$status = 'INACTIVE'
-            return this.teamMemberRepository.saveTeamMember(member);
+            await this.teamMemberRepository.findTeamMemberByIds(id);
+            return this.teamMemberRepository.deleteTeamMember(id);
         } catch (e) {
-            if (e instanceof EntityNotFoundError) {
-                throw new BadRequestEntity("The given teamMember does not exist yet.");
-            }
+            throw new BadRequestEntity(e.message);
         }
     }
 
