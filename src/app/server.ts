@@ -14,8 +14,7 @@ export default class App {
     ) {}
     
     private async createApp() {
-        await createConnections(dbConnection.connections);
-
+        await createConnections(dbConnection.connections)
         const app: Koa = new Koa();
         const router: Router = new Router();
         // app.use(cors());
@@ -32,10 +31,9 @@ export default class App {
 
     public async start() {
         const app = await this.createApp();
-        console.log("Started listening on port ", config.port);
-        // console.log(config);
-        const server = app.listen(config.port);        
-        return Promise.resolve(server);
+        app.listen(config.port);                
+        var msg = 'Started listening on ' + config.env + ' environment at port '+ config.port + '...';
+        return Promise.resolve(msg);
     }
 
 }
