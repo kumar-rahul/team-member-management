@@ -1,7 +1,7 @@
 module.exports = {
     apps: [{
       name: 'team-member-management',
-      script: './src/index.js'
+      script: './src/index.ts'
     }],
     deploy: {
       production: {
