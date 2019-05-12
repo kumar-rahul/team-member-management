@@ -6,7 +6,7 @@ import {createConnections} from "typeorm";
 import AppRoute from "./route";
 import ValidateRequest from "../middleware/security/ValidateRequest";
 import config from "../config/config";
-import * as dbConnection from "./dbconnection";
+import * as dbConnection from "./dbConnection";
 import cors from '@koa/cors';
 
 export default class App {
