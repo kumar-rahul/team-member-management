@@ -5,7 +5,7 @@ import path  from 'path';
 const config = convict({
     env: {
         doc: 'The application environment.',
-        format: ['prod', 'dev', 'test'],
+        format: ['prod', 'dev', 'test', 'staging'],
         default: 'dev',
         env: 'NODE_ENV',
     },
@@ -57,13 +57,13 @@ const config = convict({
     },    
     log :  {
         level: {
-            doc: "Log Levels",
-            format: ["info", "warn", "debug", "error", "none"],
-            default: "info"
+            doc: 'Log Levels',
+            format: ['info', 'warn', 'debug', 'error', 'none'],
+            default: 'info'
         },
         status: {
-            doc: "enabled/disabled",
-            format: "Boolean",
+            doc: 'enabled/disabled',
+            format: 'Boolean',
             default: false,
         }
     }
@@ -71,10 +71,8 @@ const config = convict({
 
 
 const env = config.get('env');
-// var filePath = path.join(__dirname, `${env}.json`)
-config.loadFile(path.join(__dirname, `${env}.env.json`));
-
-config.validate({ allowed: 'strict' });
-
-// export default config;
+// var filePath = path.join(__dirname, `../../${env}.env.json`)
+// console.log('filePath::', filePath);
+        config.loadFile(path.join(__dirname, `../../env/${env}.env.json`));
+        config.validate({ allowed: 'strict' });
 export default config.getProperties();

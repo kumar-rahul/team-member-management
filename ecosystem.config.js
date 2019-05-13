@@ -11,7 +11,7 @@ module.exports = {
         ref: 'origin/develop',
         repo: 'git@github.com:kumar-rahul/team-member-management.git',
         path: '/home/ubuntu/team-member-management',
-        'post-deploy': 'npm install && npm run build && pm2 startOrRestart ecosystem.config.js'
+        'post-deploy': 'npm install && npm run start:prod && pm2 startOrRestart ecosystem.config.js'
       }
     }
   }

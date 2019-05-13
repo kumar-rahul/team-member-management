@@ -4,10 +4,15 @@
   "description": "team member management project",
   "main": "index.js",
   "scripts": {
-    "tslint": "tslint -c tslint.json -p tsconfig.json",
-    "build": "npm run tslint && tsc --rootDir ./src/",
-    "start": "ts-node src/index.ts",
     "watch-server": "nodemon --watch 'src/**/*' -e ts,tsx --exec ts-node src/index.ts",
+    "build-ts": "tsc",
+    "tslint": "tslint -c tslint.json -p tsconfig.json",
+    "serve": "node build/index.js",
+    "build": "npm run tslint && npm run build-ts",
+    "start": "npm run serve",
+    "start:stage":  "export NODE_ENV=staging && npm run build && npm start",
+    "start:dev":  "export NODE_ENV=dev && npm run watch-server",
+    "start:prod":  "export NODE_ENV=prod && npm run build && npm start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

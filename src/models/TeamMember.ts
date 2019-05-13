@@ -16,7 +16,7 @@ export default class TeamMember {
     @IsEmail()
     private email!: string;
     @Column()
-    @IsIn(["admin", "regular"])
+    @IsIn(['admin', 'regular'])
     private role!: string;
 
     public get $id(): number {
