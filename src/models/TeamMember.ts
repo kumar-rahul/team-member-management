@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { IsEmail, IsIn } from 'class-validator';
 
 @Entity('team_member')
 export default class TeamMember {
@@ -12,8 +13,10 @@ export default class TeamMember {
     @Column()
     private phoneNumber!: string;
     @Column()
+    @IsEmail()
     private email!: string;
     @Column()
+    @IsIn(["admin", "regular"])
     private role!: string;
 
     public get $id(): number {

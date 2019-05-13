@@ -1,5 +1,5 @@
-import * as Router from "koa-router";
-import Route from "../models/Route";
+import * as Router from 'koa-router';
+import Route from '../models/Route';
 
 export abstract class IRoutes {
 
@@ -13,16 +13,16 @@ export abstract class IRoutes {
 
     private registerRoute = (route: Route, router: Router) => {
         switch (route.$method) {
-            case ("get"):
+            case ('get'):
                 router.get(route.$path, route.$action);
                 break;
-            case ("post"):
+            case ('post'):
                 router.post(route.$path, route.$action);
                 break;
-            case ("put"):
+            case ('put'):
                 router.put(route.$path, route.$action);
                 break;
-            case ("delete"):
+            case ('delete'):
                 router.delete(route.$path, route.$action);
                 break;
         }

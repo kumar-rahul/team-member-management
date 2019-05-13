@@ -1,9 +1,9 @@
-import { Inject, Singleton } from "typescript-ioc";
-import BadRequestEntity from "../exceptions/BadRequestEntity";
-import EntityNotFoundError from "../exceptions/EntityNotFoundError";
-import TeamMember from "../models/TeamMember";
-import TeamMemberRepository from "../repositories/TeamMemberRepository";
-import { AppConstant } from "../app/constant";
+import { Inject, Singleton } from 'typescript-ioc';
+import BadRequestEntity from '../exceptions/BadRequestEntity';
+import EntityNotFoundError from '../exceptions/EntityNotFoundError';
+import TeamMember from '../models/TeamMember';
+import TeamMemberRepository from '../repositories/TeamMemberRepository';
+import { AppConstant } from '../app/constant';
 
 @Singleton
 export default class TeamMemberService {
@@ -13,10 +13,6 @@ export default class TeamMemberService {
     public async findById(id: number): Promise<TeamMember> {
         return this.teamMemberRepository.findTeamMemberByIds(id);
     }
-
-    // public async findByEmail(email: string): Promise<TeamMember> {
-    //     return this.teamMemberRepository.findTeamMemberByEmail(email);
-    // }
 
     public async findAll(): Promise<TeamMember[]> {
         return this.teamMemberRepository.getAllTeamMember();
