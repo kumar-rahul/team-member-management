@@ -3,7 +3,7 @@
 The following exposition is regarding backend workflow design. It delineates tech and design patterns together with the different folders based on separation of concern theme.
 The application is written in Typescript, utilizing the KOA framework to establish application agnostic and stateless server infrastructure. It supports user authentication with JWT (jwt-simple) and communicates with a MySQL database by way of the typeorm object modeling services.
 The application build is done using standard npm commands found in the package.json file.
-1. Development Setup:
+
 ## Pre-reqs
 To build and run this app locally you will need:
 - Install [Node.js](https://nodejs.org/en/) v8.9.4
@@ -33,6 +33,7 @@ To build and run this app locally you will need:
 - Clone the repository
 ```
 git clone https://github.com/kumar-rahul/team-member-management.git
+git checkout develop
 ```
 - Install dependencies
 ```
