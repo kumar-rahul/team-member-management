@@ -1,7 +1,6 @@
 # Team Member Management
 
-The following exposition is regarding backend workflow design. It delineates tech and design patterns together with the different folders based on separation of concern theme.
-The application is written in Typescript, utilizing the KOA framework to establish application agnostic and stateless server infrastructure. It supports user authentication with JWT (jwt-simple) and communicates with a MySQL database by way of the typeorm object modeling services.
+The application is written in Typescript, utilizing the KOA framework. It supports user authentication with JWT (jwt-simple) and communicates with a MySQL database by way of the typeorm object modeling services.
 The application build is done using standard npm commands found in the package.json file.
 
 ## Pre-reqs
